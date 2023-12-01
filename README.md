@@ -19,4 +19,8 @@ To stop LAM run:
 ```
 docker-compose down
 ```
-## For delelopers and image builders: use docker-compose.yaml and Dockerfiles from the appropiate folders of this repo instead of default deploy docker-compose.yaml!
+### For delelopers and image builders: use docker-compose.yaml and Dockerfiles from the appropiate folders of this repo instead of default deploy docker-compose.yaml!
+
+Also place all files from repo's ./etc and ./usr dirs in your /opt/lam-dockerized!
+
+./usr/share/ldap-account-manager.zip must be unpacked into ./usr/share/ldap-account-manager (it is packed due to the limits of github).
