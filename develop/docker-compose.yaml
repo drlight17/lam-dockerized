@@ -1,0 +1,35 @@
+# docker compose for develop image
+version: '3.9'
+
+services:
+  lam:
+    container_name: lam_dockerized
+    image: lam:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:8080
+    restart: always
+    volumes:
+      - type: bind
+        source: ./etc/nginx/http.d/default.conf
+        target: /etc/nginx/http.d/default.conf
+      - type: bind
+        source: ./etc/supervisor/supervisord.conf
+        target: /etc/supervisor/supervisord.conf
+      - ./usr/share/ldap-account-manager:/usr/share/ldap-account-manager
+      - ./etc/ldap-account-manager:/etc/ldap-account-manager
+      - ./tmp:/usr/share/ldap-account-manager/tmp
+      - ./sess:/usr/share/ldap-account-manager/sess
+      - ./config:/usr/share/ldap-account-manager/config
+
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+      com.docker.network.bridge.name: lam_iface

@@ -1,0 +1,33 @@
+# docker compose for prod deploy
+version: '3.9'
+
+services:
+  lam:
+    container_name: lam_dockerized
+    image: drlight17/lam-dockerized:latest
+    ports:
+      - 80:8080
+    restart: always
+    volumes:
+# use customized css and js in container; uncomment all binds to use customizations from custom dir
+#      - type: bind
+#        source: ./custom/style/130_custom.css
+#        target: /usr/share/ldap-account-manager/style/responsive/130_custom.css
+#      - type: bind
+#        source: ./custom/js/150_custom.js
+#        target: /usr/share/ldap-account-manager/templates/lib/150_custom.js
+# mount for config and other persistence
+      - ./tmp:/usr/share/ldap-account-manager/tmp
+      - ./tmp/internal:/usr/share/ldap-account-manager/tmp/internal
+      - ./sess:/usr/share/ldap-account-manager/sess
+      - ./config:/usr/share/ldap-account-manager/config
+
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+      com.docker.network.bridge.name: lam_iface

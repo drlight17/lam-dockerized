@@ -1,0 +1,38 @@
+table.responsive-table td {
+	word-break: normal!important;
+}
+table.responsive-table th {
+	white-space: normal!important;
+}
+td.loginLogo {
+	display:none!important;
+}
+#dropmenu > li:nth-child(2) {
+	display:none!important;
+}
+body > table > tbody > tr > td:nth-child(2) > span a {
+	display:none;
+}
+a.lamLogo {
+	display:none!important;
+}
+a.lamLogo_new {
+	background-image: url(../../style/images/logo136.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	line-height: 50px;
+	text-indent: 80px;
+}
+.lamHeader, .lamTop {
+	height: 60px!important;
+	background: linear-gradient(0deg, rgba(195,198,207,1) 0%, rgba(255,255,255,1) 73%)!important;
+}
+body > div.centeredTable > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > form > div > div:nth-child(1) {
+	display: none;
+}
+.tableFloatingHeaderOriginal {
+	box-shadow: 0px 4px 8px rgba(0,0,0,0.2)!important;
+}
+#lamVerticalTabs > table > tbody > tr > td:nth-child(2) > div > div > div.small-12.medium-12.large-4.columns {
+	left: 11px;
+}

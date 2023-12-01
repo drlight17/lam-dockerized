@@ -1,0 +1,28 @@
+# docker compose for build image
+version: '3.9'
+
+services:
+  lam:
+    container_name: lam_dockerized
+    image: lam:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:8080
+    restart: always
+    volumes:
+
+      - ./tmp:/usr/share/ldap-account-manager/tmp
+      - ./tmp/internal:/usr/share/ldap-account-manager/tmp/internal
+      - ./sess:/usr/share/ldap-account-manager/sess
+      - ./config:/usr/share/ldap-account-manager/config
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+      com.docker.network.bridge.name: lam_iface
