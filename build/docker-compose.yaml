@@ -8,6 +8,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    env_file: ./.env
     ports:
       - ${LAM_LISTEN_PORT}:${LAM_LISTEN_PORT}
     restart: always
