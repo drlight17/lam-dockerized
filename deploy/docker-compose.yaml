@@ -5,17 +5,27 @@ services:
   lam:
     container_name: lam_dockerized
     image: drlight17/lam-dockerized:latest
+    env_file: ./.env
     ports:
-      - 80:8080
+      - ${LAM_LISTEN_PORT}:${LAM_LISTEN_PORT}
     restart: always
     volumes:
-# use customized css and js in container; uncomment all binds to use customizations from custom dir
+# use customized css, js and modules in container; uncomment all needed binds to use customizations from custom dir
 #      - type: bind
 #        source: ./custom/style/130_custom.css
 #        target: /usr/share/ldap-account-manager/style/responsive/130_custom.css
 #      - type: bind
 #        source: ./custom/js/150_custom.js
 #        target: /usr/share/ldap-account-manager/templates/lib/150_custom.js
+#      - type: bind
+#        source: ./custom/lib/modules/windowsUser.inc
+#        target: /usr/share/ldap-account-manager/lib/modules/windowsUser.inc
+#      - type: bind
+#        source: ./custom/lib/modules/nisMailAlias.inc
+#        target: /usr/share/ldap-account-manager/lib/modules/nisMailAlias.inc
+#      - type: bind
+#        source: ./custom/lib/modules/inetOrgPerson.inc
+#        target: /usr/share/ldap-account-manager/lib/modules/inetOrgPerson.inc
 # mount for config and other persistence
       - ./tmp:/usr/share/ldap-account-manager/tmp
       - ./tmp/internal:/usr/share/ldap-account-manager/tmp/internal

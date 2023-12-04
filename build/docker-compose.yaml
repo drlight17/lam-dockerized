@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 80:8080
+      - ${LAM_LISTEN_PORT}:${LAM_LISTEN_PORT}
     restart: always
     volumes:
 

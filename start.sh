@@ -11,4 +11,7 @@ chown -R nobody /usr/share/ldap-account-manager/sess
 chown -R nobody /usr/share/ldap-account-manager/tmp
 chown -R nobody /usr/share/ldap-account-manager/config
 chown nobody /etc/ldap-account-manager/config.cfg
+sed -i 's/location \/lam/location \/'${LAM_NGINX_PATH}'/g' /etc/ldap-account-manager/nginx.conf
+sed -i 's/listen 8080/listen '${LAM_LISTEN_PORT}'/g' /etc/nginx/http.d/default.conf
+sed -i 's/listen \[\:\:\]\:8080/listen \[\:\:\]\:'${LAM_LISTEN_PORT}'/g' /etc/nginx/http.d/default.conf
 supervisord -n -c /etc/supervisor/supervisord.conf
