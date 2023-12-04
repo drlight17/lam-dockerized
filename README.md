@@ -31,4 +31,4 @@ docker-compose down
 
 Also place all files from repo's ./etc and ./usr dirs in your /opt/lam-dockerized!
 
-./usr/share/ldap-account-manager.zip must be unpacked into ./usr/share/ldap-account-manager (it is packed due to the limits of github).
+./usr/share/ldap-account-manager.tar.gz must be unpacked into ./usr/share/ldap-account-manager (it is packed due to the limits of github).
