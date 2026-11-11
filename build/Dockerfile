@@ -3,7 +3,6 @@ FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# 1. Установка базовых пакетов, подключение PPA ondrej/php и установка PHP 7.4
 RUN apt-get update && apt-get install -y --no-install-recommends \
     locales \
     ca-certificates \
@@ -40,7 +39,6 @@ ENV LANG=ru_RU.UTF-8 \
     LANGUAGE=ru_RU:ru \
     LC_ALL=ru_RU.UTF-8
 
-# 2. Настройка часового пояса
 RUN ln -snf /usr/share/zoneinfo/Europe/Moscow /etc/localtime && echo "Europe/Moscow" > /etc/timezone
 
 WORKDIR /
@@ -50,11 +48,10 @@ COPY ./usr /usr/
 COPY ./etc /etc/
 COPY ./usr/share/ldap-account-manager/config /etc/ldap-account-manager/config
 
-# 3. Защита от вектора через upload_progress (размещается после COPY ./etc, чтобы не затёрлось)
 RUN printf "session.upload_progress.enabled = 0\n" > /etc/php/7.4/fpm/conf.d/99-security.ini \
     && printf "session.upload_progress.enabled = 0\n" > /etc/php/7.4/cli/conf.d/99-security.ini
 
-# При необходимости добавления корневого сертификата для LDAPS
+# uncomment to append your ca cert for TLS connections i.e. LDAPS, place crt file in folder with Dockerfile
 #COPY ca.crt /usr/local/share/ca-certificates/ca.crt
 #RUN update-ca-certificates
 
